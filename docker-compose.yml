@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+  ping_monitoring:
+    container_name:  ping_monitoring
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - influxDB
+  influxDB:
+    container_name: influxDB
+    image: influxdb:1.8
+    restart: 'on-failure'
+    volumes:
+      - /:/var/lib/docker/volumes/influxdb/_data
+    ports:
+      - '8086:8086'
