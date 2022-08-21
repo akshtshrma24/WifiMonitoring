@@ -16,4 +16,28 @@ services:
       - /:/var/lib/docker/volumes/influxdb/_data
     ports:
       - '8086:8086'
-  
+  nginx:
+    image: 'nginx'
+    container_name: temp_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./index.html:/etc/nginx/html/index.html
+    command: [nginx-debug, '-g', 'daemon off;']
+    ports:
+      - '80:80'
+    restart: 'on-failure'
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./monitoring/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+      - ./monitoring/grafana/data:/var/lib/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana/
+    user: "1000"
+    depends_on:
+      - influxDB
