@@ -19,4 +19,4 @@ COPY /scraper/ .
 COPY logger.py . 
 
 #Pinging Google's Public DNS Server
-CMD ["python3","scraper.py", "8.8.8.8", "10", "50"]
+CMD ["python3","scraper.py", "8.8.8.8", "10", "5"]

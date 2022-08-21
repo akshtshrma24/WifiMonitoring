@@ -21,6 +21,6 @@ def parsePing(output):
             case 'packet':
                 packetLoss = float(output[output.index(a) - 1][0:-1])
     if(packetLoss > 0): 
-        error("Packets Lost", packetLoss, f"Sent: {transmitted} Received: {receieved}")
+        error("Packets Lost", packetLoss, f"Sent: {transmitted} Received: {received}")
     return [transmitted, received, packetLoss]
         
