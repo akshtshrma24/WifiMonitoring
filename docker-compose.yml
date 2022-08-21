@@ -16,3 +16,4 @@ services:
       - /:/var/lib/docker/volumes/influxdb/_data
     ports:
       - '8086:8086'
+  
