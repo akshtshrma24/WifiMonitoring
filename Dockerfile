@@ -17,4 +17,5 @@ COPY /scraper/ .
 COPY logger.py . 
 
 #Pinging Google's Public DNS Server
+# <IP> <packets you sant to send> <scrape interval>
 CMD ["python3","scraper.py", "8.8.8.8", "10", "50"]

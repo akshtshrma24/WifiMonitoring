@@ -1,4 +1,5 @@
 import subprocess
+import time
 
 from logger import * 
 
@@ -7,7 +8,17 @@ from logger import *
 def pingIP(ip, packets):
     return str(subprocess.Popen(f'ping -c{packets} {ip}' , stdout=subprocess.PIPE, shell=True).communicate()[0])
 
-
+#keeps pinging every 30 seconds until connection restablished 
+#Pings Google DNS To ensure connection stability
+#exits once it is restablished, sends logs periodically 
+def halt():
+    time.sleep(30)
+    packetLoss = parsePing(pingIP('8.8.8.8', 10))[2]
+    if(packetLoss > 0):
+        error(f"Still PacketLoss: {packetLoss}")
+        halt()
+    success("Connection reestablished")
+    
 #parses the output given for packets trasnmitted, 
 #receieved and packetLoss in percent
 def parsePing(output):
@@ -21,6 +32,6 @@ def parsePing(output):
             case 'packet':
                 packetLoss = float(output[output.index(a) - 1][0:-1])
     if(packetLoss > 0): 
-        error("Packets Lost", packetLoss, f"Sent: {transmitted} Received: {receieved}")
+        halt()
     return [transmitted, received, packetLoss]
         
