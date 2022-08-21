@@ -15,7 +15,8 @@ Custom Logger file to add color to logs.
 <h4> ToDo: </h4> 
 ✅ build pinging scraper thing<br>
 ✅ connect to influx <br>
-❌ Nginx<br>
-❌ grafana the data<br>
+✅ Prometheus and Cadvisor
+✅ Nginx<br>
+✅ grafana the data<br>
 ❌ Add Alerting<br>
 ❌ Deploy on At Home Pi<br>

@@ -2,6 +2,8 @@ FROM python:3.10.1
 
 WORKDIR /ping_monitoring
 
+EXPOSE 5000
+
 RUN apt-get update; echo "y" | apt-get install iputils-ping
 
 RUN pip3 install --upgrade pip
