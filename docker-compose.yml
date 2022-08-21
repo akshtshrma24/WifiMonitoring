@@ -56,7 +56,7 @@ services:
     devices:
       - /dev/kmsg:/dev/kmsg
     depends_on:
-      - plane-api
+      - ping_monitoring
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
