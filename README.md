@@ -6,7 +6,7 @@ This is configurable from the Dockerfile.
 <h2> How to Use </h2>
 1. Clone this Repo <br>
 2. Run `docker compose up --build` inside
-3 Optional. Configure the Dockerfile with the ip u want to ping and the interval
+3. Optional. Configure the Dockerfile with the ip u want to ping and the interval
 
 <hr>
 
